@@ -1,17 +1,31 @@
+html {
+}
 body {
 	text-align: center;
+	background-color: #5E8F41;
 }
 .textarea {
 	overflow: auto;
-	max-height: 60%;
+	max-height: 400px;
+	background-color: #CA8C4B;
+	color: #474D24;
+}
+.buttonbox{
+	background-color: #2E4520;
 }
 button {
 	width: 75px;
 	height: 75px;
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+}
+h1{
+	font-family: 'Righteous', cursive;
+	color: #666E36;
+}
+p {
+	font-family: 'Metamorphous', cursive;
 }
 #grab-use{
 	width: 100%;
-}
-.buttonbox {
-	margin: 10px;
 }
