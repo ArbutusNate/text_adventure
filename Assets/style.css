@@ -1,3 +1,17 @@
 body {
 	text-align: center;
 }
+.textarea {
+	overflow: auto;
+	max-height: 60%;
+}
+button {
+	width: 75px;
+	height: 75px;
+}
+#grab-use{
+	width: 100%;
+}
+.buttonbox {
+	margin: 10px;
+}
