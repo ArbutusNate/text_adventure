@@ -13,11 +13,24 @@ body {
 .buttonbox{
 	background-color: #2E4520;
 }
+.inventory{
+	text-align: center;
+	font-family: 'Righteous', cursive;
+	color: #2E4520;
+	font-size: 30px;
+}
+.inventoryitem{
+	background-color: #B1C449;
+}
 button {
 	width: 75px;
 	height: 75px;
 	font-family: 'Righteous', cursive;
 	font-size: 20px;
+	background-color: #B1C449;
+}
+button.disabled {
+	background-color: #666E36;
 }
 h1{
 	font-family: 'Righteous', cursive;
