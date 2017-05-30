@@ -62,7 +62,7 @@
 		location : [-3,0,0],
 			visited: false,
 			description: "The plant life here is thick and lush, but the trees themselves give way as you near the edge of a cliff. The rocks are slick and the ground carpeted with deep green moss. The trees around you wave eternally on the wind. To the east the path retreats into the forest. A narrow path descends down the cliff face and north towards the cataract. ",
-			revisit: "You are on a clifftop path which leads east back into the forest, and north down towards the waterfall. ",
+			revisit: "You are on a clifftop path which leads east back into the forest, and north, down to a grotto at the base of the falls. ",
 			directions: ["N", "E"],
 			item: [{name: "", idesc: ""}],
 			action: [{item:"", adesc: ""}],
@@ -75,14 +75,14 @@
 		location : [-3,1,-1],
 			visited: false,
 			description: "You are halfway down a tall and slick cliff. The ravine is narrow and abrupt and climbs just as quickly on the opposite side of the river. ",
-			revisit: "You are on a cliffside path",
+			revisit: "You are on a cliffside path. ",
 			directions: ["S"],
 			item: [{name: "", idesc: ""}],
 			action: [{item:"", adesc: ""}],
 			elev: [{"N":"down"}],
 			effects: [{status:waterfall,
-				efalse:"Through the mist to your north you can just make out the torrent of water. A buffeting wind whips the mist into a horizontal storm, blasting south. The narrow path you are on slopes down towards the north and the base of the falls, but is made impassible by the falling wayter. It travels up and south towards the edge of the ravine. ",
-				etrue:"Mist settles on the moss around you but the falls are dry. Across a deep pool to your north you can see the entrance to a tunnel. The "}]
+				efalse:"Through the mist to your north you can just make out the torrent of water. A buffeting wind whips the mist into a horizontal storm, blasting south. The narrow path you are on slopes down towards the north and the base of the falls, but is made impassable by the falling water. It travels up and south towards the edge of the ravine. ",
+				etrue:"Mist settles on the moss around you but the falls are dry. Across a deep pool to your north you can see the entrance to a tunnel. The path climbs south to the lip of the ravine."}]
 		},
 		//New Location Template//
 		{name: "",
@@ -130,8 +130,6 @@
 				.prop('disabled', false)
 				.removeClass("disabled");
 		}
-		// var button = $("<button>")
-
 		if(current.visited === false){
 			world[tempindex].visited = true;
 			atlocationprint("description");
@@ -167,9 +165,10 @@
 		debugger;
 		move = "N"
 		player.currentloc[1]++;
+		updown();
 		checklocation();
 		atlocation();
-		updown();
+		// updown();
 	};
 	function east(){
 		move = "E"
@@ -203,6 +202,11 @@
 			.text(itemswitch)
 			.appendTo(".inventory")
 			.fadeIn(3000);
+		var newtext = $("<p style=display:none>")
+		newtext
+			.text("You grab the " + itemswitch + " and put it in your bag.")
+			.appendTo(".textarea").fadeIn(3000)
+		$(".textarea").animate({scrollTop: 600}, 3000);
 	};
 	function look(){
 		atlocationprint("description");
