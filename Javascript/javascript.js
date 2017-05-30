@@ -22,7 +22,7 @@
 			visited: false,
 			description: "You find yourself at the edge, at a crossroads. Dappled sunlight filters through the trees on the verge of a great forest as their terminal boughs stretch over patchy grass. The sound of pollinating insects and birds fill the air and the smell of warm grass wafts towards you from the south on the occasional breeze. Just beside you are the remains of a faded signpost. Beneath your feet is the crossing of two roads. One is a footpath that travels approximately south and north, the other a track that winds in and out of shadow as it follows the edge of the forest. The northern path winds away into the forest and is quickly lost amongst the trees. To the east the track heads off towards a massive windmill just visible above the trees. The southern path appears to lead across rolling golden plains forever. In the middle distance a thin line of smoke rises as if from a cookfire. ",
 			revisit: "You are back at the crossroads at the verge of the forest. ",
-			directions: ["N","E","S","W"],
+			directions: ["E"],
 			item: [{name: "", idesc: ""}],
 			action: [{item:"", adesc: ""}],
 			elev: [{"":""}],
@@ -79,7 +79,7 @@
 			directions: ["S"],
 			item: [{name: "", idesc: ""}],
 			action: [{item:"", adesc: ""}],
-			elev: [{"N":"down"}],
+			elev: [{"N":"down"},{"S":"up"}],
 			effects: [{status:waterfall,
 				efalse:"Through the mist to your north you can just make out the torrent of water. A buffeting wind whips the mist into a horizontal storm, blasting south. The narrow path you are on slopes down towards the north and the base of the falls, but is made impassable by the falling water. It travels up and south towards the edge of the ravine. ",
 				etrue:"Mist settles on the moss around you but the falls are dry. Across a deep pool to your north you can see the entrance to a tunnel. The path climbs south to the lip of the ravine."}]
@@ -116,7 +116,7 @@
 				.appendTo(".textarea")
 				.fadeIn(3000)
 		};
-		$(".textarea").animate({scrollTop: 600}, 3000);
+		$(".textarea").animate({scrollTop: 9000}, 3000);
 	};
 	function atlocation(){
 		console.log("Player location is " + player.currentloc + ".")
@@ -124,7 +124,7 @@
 		$(".db")
 			.prop('disabled', true)
 			.addClass("disabled");
-		for(i = 0; i < current.directions.length; i++){
+		for (var i = 0; i < current.directions.length; i++) {
 			var dirvar = current.directions[i];
 			$("#" + dirvar)
 				.prop('disabled', false)
@@ -151,14 +151,26 @@
 	};
 	function updown(){
 		debugger;
-		var tempelev = current.elev[0];
+		var tempelev = {};
+		for(i = 0; i < current.elev.length; i++){
+			tempelev = current.elev[i];
+			if(tempelev[move] === "down"){
+				player.currentloc[2]--;
+				console.log("down");
+			}
+			if(tempelev[move] === "up"){
+				player.currentloc[2]++;
+				console.log("up");
+			}
+		}
+		// var tempelev = current.elev[0];
 
-		if(tempelev[move] === "down"){
-			player.currentloc[2]--;
-		}
-		if(tempelev[move] === "up"){
-			player.currentloc[2]++;
-		}
+		// if(tempelev[move] === "down"){
+		// 	player.currentloc[2]--;
+		// }
+		// if(tempelev[move] === "up"){
+		// 	player.currentloc[2]++;
+		// }
 	}
 // Button Functions
 	function north(){
@@ -173,23 +185,23 @@
 	function east(){
 		move = "E"
 		player.currentloc[0]++;
+		updown();
 		checklocation();
 		atlocation();
-		// updown();
 	};
 	function south(){
 		move = "S"
 		player.currentloc[1]--;
+		updown();
 		checklocation();
 		atlocation();
-		// updown();
 	};
 	function west(){
 		move = "W"
 		player.currentloc[0]--;
+		updown();
 		checklocation();
 		atlocation();
-		// updown();
 	};
 	function grab(){
 		if(current.item[0].name !== ""){
